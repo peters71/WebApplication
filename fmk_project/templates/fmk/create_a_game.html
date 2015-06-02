@@ -1,0 +1,135 @@
+{% extends 'fmk/base.html' %}
+	
+	{% load staticfiles %} <!-- New line -->
+	{% block body_block %}
+		<h1>Create A New Game</h1>
+
+		<form id = "create_game_form" method='post' action = "/fmk/create_a_game/">
+
+            {% if game_id %}
+            <p>You have successfully created a game to F|M|K!</p>
+
+            <p>Would you like to share your game? You can share your game via Twitter!</p>
+
+            <div class="form-group">
+            <label class="control-label" for="focusedInput">Game Link</label>
+            <input class="form-control" id="focusedInput" type="text" value="fmkitech.pythonanywhere.com/{% url 'play_game' game_id %}">
+<br>
+                <p>Tweet your game to @fmkitech!</p>
+                <a class="twitter-hashtag-button"
+                   data-size="large"
+             href="https://twitter.com/intent/tweet?button_hashtag=fmkitech&text=Play%20FMK!%20Who%20Will%20You%20Choose:%20%20%20 fmkitech.pythonanywhere.com/{% url 'play_game' game_id %}"
+             data-related="twitter">
+            Share Game
+            </a>
+            <script>
+            window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+            </script>
+
+                <br>
+                <br>
+                <p>Tweet your game to a friend!</p>
+                <a class="twitter-mention-button"
+                   data-size="large"
+   href="https://twitter.com/intent/tweet?screen_name=friend&text=Play%20FMK!%20Who%20Will%20You%20Choose:%20%20%20 fmkitech.pythonanywhere.com/{% url 'play_game' game_id %}">
+Tweet to friend
+</a>
+<script>
+window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+</script>
+                <!--There will be a better way to do this-->
+            </div>
+
+
+            <p>Or you can have a go yourself </p>
+            <a href="{% url 'play_game' game_id %}" class="btn btn-primary">Play Your Game</a>
+
+            {% else %}
+			{% csrf_token %}
+
+			{% for hiddin in form.hidden_fields %}
+				{{ hidden }}
+			{% endfor %}
+
+
+
+			{% for field in form.visible_fields %}
+				<br>
+				{{ field.errors }}
+				{{ field.help_text }}
+				{{ field }}
+
+				</br>
+			{% endfor %}
+
+
+
+            </br>
+            <div class="col-lg-5 col-lg-offset-2">
+    <input type = "submit" class="btn btn-primary" name="submit" value="Create Game"/>
+
+
+            </div>
+            <br>
+            <br>
+            <br>
+            {% if user.is_authenticated %}
+            <div class="jumbotron">
+
+</form>
+
+<h2>Search for a Celebrity by Category</h2>
+    <script>
+  $(function() {
+    var projects = [
+        {% for celebrity in celebrities %}
+        {
+            value: "{{celebrity.category}}",
+            label: "{{celebrity.category}}",
+            desc: "{{celebrity}}",
+            icon: "{{celebrity.picture.url}}"
+          },
+        {% endfor %}
+    ];
+    $( "#project" ).autocomplete({
+      minLength: 0,
+      source: projects,
+      focus: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        $( "#project-id" ).val( ui.item.value );
+        $( "#project-description" ).html( ui.item.desc )
+        $( "#project-icon" ).attr( "src", ui.item.icon );
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<a>" + item.label + "<br>" + item.desc + "</a>" )
+        .appendTo( ul );
+    };
+  });
+  </script>
+
+<div id="project-label">Search by category:</div>
+<img id="project-icon" src="{% static 'images/FMK.png' %}" class="ui-state-default" alt="">
+<input id="project">
+<input type="hidden" id="project-id">
+<p id="project-description"></p>
+
+                <div id="addcontent">
+         <p>Can't find the celebrity you are looking for? Add one now!</p>
+                <p><a href="{% url 'add_celebrity' %}">Add Celebrity</a></p>
+                 <p><a href="{% url 'add_category'%}">Add Category</a></p>
+                    </div>
+                </div>
+            {% endif %}
+
+
+         {% endif %}	
+		 
+		 
+{% endblock %}

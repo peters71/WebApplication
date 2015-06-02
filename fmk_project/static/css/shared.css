@@ -1,0 +1,135 @@
+
+
+
+/*Index Page Layout */
+#indexLayoutTest {
+	margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+}
+#indexbuttonlayout {
+	padding-left: 30%;
+
+}
+
+#indexpageheading {
+
+	margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    align-content: center;
+}
+
+#indextwitterlayout {
+
+	margin-left: 35%;
+}
+
+#indextwitterlayoutnouser {
+
+	margin-left: 35%;
+}
+
+
+table.gamebuttons{
+    width:33%;
+    float: left;
+
+}
+
+td.gamebuttons{
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    align:center;
+    width:100%;
+}
+
+th.gamebuttons{
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    align:center;
+    width:100%;
+}
+
+table.submitbuttons{
+    width: 99%;
+    clear: both;
+
+}
+
+td.submitbuttons{
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    align:center;
+    width:100%;
+}
+
+th.submitbuttons{
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    align:center;
+    width:100%;
+}
+
+/*AJAX Page Layout */
+
+
+#project-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+  #project-icon {
+    float: left;
+    height: 200px;
+    width: 150px;
+  }
+  #project-description {
+    margin: 0;
+    padding: 0;
+  }
+
+#addcontent {
+
+    padding-left:  40%;
+}
+
+
+#addCelebritySearch {
+
+    float: right;
+    margin-right: 40%;
+}
+
+
+#addcelebrityform {
+
+    padding-right:  50%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
